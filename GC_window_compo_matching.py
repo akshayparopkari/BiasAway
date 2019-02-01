@@ -84,7 +84,7 @@ def fg_GC_bins(fg, winlen, step):
     tmp_gc_bins = []
     gc_list = []
     lengths = []
-    for _ in xrange(0, 101):
+    for _ in range(0, 101):
         tmp_gc_bins.append([])
     for record in SeqIO.parse(stream, "fasta"):
         gc, min_gc, max_gc, sd_gc, cv_gc = GC_info(record.seq, winlen, step)
@@ -144,7 +144,7 @@ def fg_len_GC_bins(fg, winlen, step):
     gc_list = []
     lengths = []
     l_dic = []
-    for _ in xrange(0, 101):
+    for _ in range(0, 101):
         tmp_gc_bins.append([])
         l_dic.append({})
     for record in SeqIO.parse(stream, "fasta"):
@@ -178,7 +178,7 @@ def bg_GC_bins(bg, bg_dir):
     gc_bins = []
     gc_list = []
     lengths = []
-    for _ in xrange(0, 101):
+    for _ in range(0, 101):
         gc_bins.append([])
     for record in SeqIO.parse(stream, "fasta"):
         gc = GC(record.seq)
@@ -207,7 +207,7 @@ def bg_len_GC_bins(bg, bg_dir):
     gc_bins = []
     gc_list = []
     lengths = []
-    for _ in xrange(0, 101):
+    for _ in range(0, 101):
         gc_bins.append({})
     for record in SeqIO.parse(stream, "fasta"):
         gc = GC(record.seq)
@@ -290,7 +290,7 @@ def generate_sequences(fg_bins, bg_bins, bg_dir, deviation, winlen, step,
             else:
                 gc_list.extend([percent] * nb)
             for r in sample:
-                print r.format("fasta"),
+                print(r.format("fasta"), end=' ')
                 lengths.append(len(r.seq))
     return gc_list, lengths
 
@@ -400,7 +400,7 @@ def generate_len_sequences(fg_bins, bg_bins, bg_dir, deviation, winlen, step,
     sys.setrecursionlimit(10000)
     gc_list = []
     lengths = []
-    for percent in xrange(0, 101):
+    for percent in range(0, 101):
         if fg_bins[percent][0]:
             nb = sum(fg_bins[percent][0][0].values()) * nfold
             if bg_bins:
@@ -409,7 +409,7 @@ def generate_len_sequences(fg_bins, bg_bins, bg_dir, deviation, winlen, step,
                 bin_seq = get_bins_len_from_bg_dir(bg_dir, percent)
             sequences = []
             bg_keys = sorted(bin_seq.keys())
-            for size in fg_bins[percent][0][0].keys():
+            for size in list(fg_bins[percent][0][0].keys()):
                 nb_to_retrieve = fg_bins[percent][0][0][size] * nfold
                 seqs, _, bg_keys = extract_seq_rec(size, nb_to_retrieve,
                                                    bg_keys, bin_seq, [], 0,
@@ -424,6 +424,6 @@ def generate_len_sequences(fg_bins, bg_bins, bg_dir, deviation, winlen, step,
                                                           nb_match))
             gc_list.extend([percent] * (nb_match))
             for r in sequences:
-                print "{0:s}".format(r.format("fasta")),
+                print("{0:s}".format(r.format("fasta")), end=' ')
                 lengths.append(len(r))
     return gc_list, lengths

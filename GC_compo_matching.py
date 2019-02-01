@@ -68,7 +68,7 @@ def print_rec(rec, stream):
 def print_in_bg_dir(gc_bins, bg_dir, with_len=False):
     """ Print the sequences in the bg directory in bin files. """
 
-    for percent in xrange(0, 101):
+    for percent in range(0, 101):
         with open("{0}/bg_bin_{1}.txt".format(bg_dir, percent), 'w') as stream:
             if with_len:
                 for length in gc_bins[percent]:
@@ -93,7 +93,7 @@ def bg_GC_bins(bg_file, bg_dir):
     gc_bins = []
     gc_list = []
     lengths = []
-    for _ in xrange(0, 101):
+    for _ in range(0, 101):
         gc_bins.append([])
     for record in SeqIO.parse(stream, "fasta"):
         gc = GC(record.seq)
@@ -173,7 +173,7 @@ def generate_sequences(fg_bins, bg_bins, bg_dir, nfold):
                 sample = bin_seq
                 gc_list.extend([percent] * len(bin_seq))
             for r in sample:
-                print r.format("fasta"),
+                print(r.format("fasta"), end=' ')
                 lengths.append(len(r.seq))
     return gc_list, lengths
 
@@ -277,7 +277,7 @@ def generate_len_sequences(fg, bg, bg_dir, nfold):
         if fg[percent]:
             nb = sum(fg[percent].values()) * nfold
             sequences = []
-            for size in fg[percent].keys():
+            for size in list(fg[percent].keys()):
                 nb_to_retrieve = fg[percent][size] * nfold
                 if bg:
                     bg_bins = bg[percent]
@@ -297,5 +297,5 @@ def generate_len_sequences(fg, bg, bg_dir, nfold):
                                                                 nb_match))
             for s in sequences:
                 lengths.append(len(s))
-                print "{0:s}".format(s.format("fasta")),
+                print("{0:s}".format(s.format("fasta")), end=' ')
     return gc_list, lengths

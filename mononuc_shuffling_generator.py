@@ -32,7 +32,7 @@ def generate_sequences(seqs, nfold):
             new_seq = SeqRecord(Seq(new_sequence, generic_dna),
                                 id="background_seq_{0:d}".format(cpt),
                                 description=descr)
-            print new_seq.format("fasta"),
+            print(new_seq.format("fasta"), end=' ')
             bg_gc_list.append(GC(new_sequence))
             bg_lengths.append(len(new_sequence))
             cpt += 1

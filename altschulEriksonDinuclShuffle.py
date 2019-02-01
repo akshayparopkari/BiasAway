@@ -6,7 +6,7 @@
 # right fashion.
 
 
-import sys,string,random
+import sys, string, random
 
 
 def computeCountAndLists(s):
@@ -18,9 +18,9 @@ def computeCountAndLists(s):
   List = {} #List is a dictionary of lists
   List['A'] = []; List['C'] = [];
   List['G'] = []; List['T'] = [];
-  nuclList   = ["A","C","G","T"]
+  nuclList   = ["A", "C", "G", "T"]
   s       = s.upper()
-  s       = s.replace("T","T")
+  s       = s.replace("T", "T")
   nuclCnt    = {}  #empty dictionary
   dinuclCnt  = {}  #empty dictionary
   for x in nuclList:
@@ -40,12 +40,12 @@ def computeCountAndLists(s):
     dinuclCnt[x][y] += 1; dinuclTotal += 1
   assert (nuclTotal==len(s))
   assert (dinuclTotal==len(s)-1)
-  return nuclCnt,dinuclCnt,List
+  return nuclCnt, dinuclCnt, List
  
  
-def chooseEdge(x,dinuclCnt):
+def chooseEdge(x, dinuclCnt):
   numInList = 0
-  for y in ['A','C','G','T']:
+  for y in ['A', 'C', 'G', 'T']:
     numInList += dinuclCnt[x][y]
   z = random.random()
   denom=dinuclCnt[x]['A']+dinuclCnt[x]['C']+dinuclCnt[x]['G']+dinuclCnt[x]['T']
@@ -65,7 +65,7 @@ def chooseEdge(x,dinuclCnt):
   return 'T'
 
 
-def connectedToLast(edgeList,nuclList,lastCh):
+def connectedToLast(edgeList, nuclList, lastCh):
   D = {}
   for x in nuclList: D[x]=0
   for edge in edgeList:
@@ -82,10 +82,10 @@ def connectedToLast(edgeList,nuclList,lastCh):
  
 
 def eulerian(s):
-  nuclCnt,dinuclCnt,List = computeCountAndLists(s)
+  nuclCnt, dinuclCnt, List = computeCountAndLists(s)
   #compute nucleotides appearing in s
   nuclList = []
-  for x in ["A","C","G","T"]:
+  for x in ["A", "C", "G", "T"]:
     if x in s: nuclList.append(x)
   #compute numInList[x] = number of dinucleotides beginning with x
   numInList = {}
@@ -98,9 +98,9 @@ def eulerian(s):
   lastCh  = s[-1]
   edgeList = []
   for x in nuclList:
-    if x!= lastCh: edgeList.append( [x,chooseEdge(x,dinuclCnt)] )
-  ok = connectedToLast(edgeList,nuclList,lastCh)
-  return ok,edgeList,nuclList,lastCh
+    if x!= lastCh: edgeList.append( [x, chooseEdge(x, dinuclCnt)] )
+  ok = connectedToLast(edgeList, nuclList, lastCh)
+  return ok, edgeList, nuclList, lastCh
 
 
 def shuffleEdgeList(L):
@@ -117,14 +117,14 @@ def shuffleEdgeList(L):
 def dinuclShuffle(s):
   ok = 0
   while not ok:
-    ok,edgeList,nuclList,lastCh = eulerian(s)
-  nuclCnt,dinuclCnt,List = computeCountAndLists(s)
+    ok, edgeList, nuclList, lastCh = eulerian(s)
+  nuclCnt, dinuclCnt, List = computeCountAndLists(s)
 
   #remove last edges from each vertex list, shuffle, then add back
   #the removed edges at end of vertex lists.
-  for [x,y] in edgeList: List[x].remove(y)
+  for [x, y] in edgeList: List[x].remove(y)
   for x in nuclList: shuffleEdgeList(List[x])
-  for [x,y] in edgeList: List[x].append(y)
+  for [x, y] in edgeList: List[x].append(y)
 
   #construct the eulerian path
   L = [s[0]]; prevCh = s[0]
@@ -134,5 +134,5 @@ def dinuclShuffle(s):
     del List[prevCh][0]
     prevCh = ch
   L.append(s[-1])
-  t = string.join(L,"")
+  t = string.join(L, "")
   return t

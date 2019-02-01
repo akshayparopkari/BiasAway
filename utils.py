@@ -65,7 +65,7 @@ def length(record):
 
 
 def compute_dinuc_distrib(seqs, b=False):
-    max_length = max(map(length, seqs))
+    max_length = max(list(map(length, seqs)))
     compo = init_compo(max_length)
     for i in range(0, len(seqs)):
         seq_length = len(seqs[i].seq)
@@ -76,28 +76,28 @@ def compute_dinuc_distrib(seqs, b=False):
     if b:  # Dinucleotide distrib over all positions
         distrib = {}
         composition = {}
-        for key in compo[0].keys():
+        for key in list(compo[0].keys()):
             cpt = 0.0
             for i in range(1, max_length):
                 cpt += compo[i - 1][key]
             composition[key] = cpt
-        for k in composition.keys():
+        for k in list(composition.keys()):
             cpt = 4.0  # WARNING: WE DO NOT TAKE ANY 'N' INTO ACCOUNT
             first = k[0]
-            for key in composition.keys():
+            for key in list(composition.keys()):
                 if key[0] == first:
                     cpt += composition[key]
             distrib[k] = (composition[k] + 1.0) / cpt
     else:  # Dinucleotide distrib position by position
         distrib = init_compo(seq_length)
         for j in range(1, seq_length):
-            for k in compo[j - 1].keys():
+            for k in list(compo[j - 1].keys()):
                 if re.search("N", k):
                     distrib[j - 1][k] = 0.0
                 else:
                     cpt = 4.0
                     first = k[0]
-                    for key in compo[j - 1].keys():
+                    for key in list(compo[j - 1].keys()):
                         if key[0] == first:
                             cpt += compo[j - 1][key]
                     distrib[j - 1][k] = (compo[j - 1][k] + 1.0) / cpt
