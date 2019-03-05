@@ -1,8 +1,7 @@
 [![LICENSE](https://img.shields.io/badge/license-LGPL-blue.svg)](https://github.com/akshayparopkari/BiasAway/blob/master/LICENSE)
 
 BiasAway
----                            
-
+---
 
 We provide here the README of the BiasAway software developed in Python. The
 software provides a user with four approaches for generating a background
@@ -32,21 +31,22 @@ factor binding sites within ChIP-Seq data](https://bmcgenomics.biomedcentral.com
 ---
 
 System requirements:
+---
 
-* Python should be installed on your machine (only version 2.7 has been
-        tested).
-* Biopython should be installed. See
-    http://biopython.org for instructions on how to install it.
-
+* Python should be installed on your machine.
+* Biopython should be installed. See http://biopython.org for instructions on how to install it.
 
 ---
 
-Download:
+Download
+---
+
 This is a fork of the original [BiasAway](https://github.com/wassermanlab/BiasAway) tool.
 
 ---
 
 Usage:
+---
 
 To get the help on how to use the software, you can run:
 - `$ python BiasAway -h`
@@ -73,6 +73,7 @@ http://cisreg.cmmt.ubc.ca/BiasAway_background/
 ---
 
 Reference:
+---
 
 The BiasAways software have been described in [Improving detection and analysis of transcription
 factor binding sites within ChIP-Seq data](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-15-472).
