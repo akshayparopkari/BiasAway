@@ -41,7 +41,9 @@ System requirements:
 Download
 ---
 
-This is a fork of the original [BiasAway](https://github.com/wassermanlab/BiasAway) tool.
+This is a fork of the original [BiasAway](https://github.com/wassermanlab/BiasAway) tool. Users can download this tool by either of the two methods below -
+- clone/fork this repository
+- download a Zip version of this repository
 
 ---
 
