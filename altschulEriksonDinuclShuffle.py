@@ -6,7 +6,8 @@
 # right fashion.
 
 
-import sys, string, random
+import random
+from collections import Counter as cnt
 
 
 def computeCountAndLists(s):
@@ -19,8 +20,8 @@ def computeCountAndLists(s):
   List['A'] = []; List['C'] = [];
   List['G'] = []; List['T'] = [];
   nuclList   = ["A", "C", "G", "T"]
-  s       = s.upper()
-  s       = s.replace("T", "T")
+  s = s.upper()
+  s = s.replace("T", "T")
   nuclCnt    = {}  #empty dictionary
   dinuclCnt  = {}  #empty dictionary
   for x in nuclList:
@@ -134,5 +135,5 @@ def dinuclShuffle(s):
     del List[prevCh][0]
     prevCh = ch
   L.append(s[-1])
-  t = string.join(L, "")
+  t = "".join(L)
   return t

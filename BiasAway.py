@@ -146,13 +146,13 @@ def gc_compo_window_generator_no_len(argu):
 
 def mononuc_shuffling_arg_parsing(subparsers):
     help_str = "mono-nucleotide shuffling generator"
-    parser_d = subparsers.add_parser('m', help=help_str)
-    parser_d.add_argument('-f', '--foreground', required=True, type=str,
+    parser_d = subparsers.add_parser("m", help=help_str)
+    parser_d.add_argument("-f", "--foreground", required=True, type=str,
                           dest="fg_file", action="store",
                           help="Foreground file in fasta format")
     help_str = "How many background sequences per each foreground sequence "
     help_str += "will be generated (default: 1)"
-    parser_d.add_argument('-n', '--nfold', required=False, type=int,
+    parser_d.add_argument("-n", "--nfold", required=False, type=int,
                           dest="nfold", action="store", default=1,
                           help=help_str)
     parser_d.set_defaults(func=mononuc_shuffling_generator)
@@ -160,33 +160,33 @@ def mononuc_shuffling_arg_parsing(subparsers):
 
 def mononuc_window_shuffling_arg_parsing(subparsers):
     help_str = "mono-nucleotide shuffling within a sliding window generator"
-    parser_w = subparsers.add_parser('f', help=help_str)
+    parser_w = subparsers.add_parser("f", help=help_str)
     parser_w.add_argument("-w", "--winlen", required=False, type=int,
                           dest="winlen", action="store", default=100,
                           help="Window length (default: 100)")
     parser_w.add_argument("-s", "--step", required=False, type=int,
                           dest="step", action="store", default=1,
                           help="Sliding step (default: 1)")
-    parser_w.add_argument('-f', '--foreground', required=True, type=str,
+    parser_w.add_argument("-f", "--foreground", required=True, type=str,
                           dest="fg_file", action="store",
                           help="Foreground file in fasta format")
     help_str = "How many background sequences per each foreground sequence "
     help_str += "will be generated (default: 1)"
-    parser_w.add_argument('-n', '--nfold', required=False, type=int,
+    parser_w.add_argument("-n", "--nfold", required=False, type=int,
                           dest="nfold", action="store", default=1,
                           help=help_str)
     parser_w.set_defaults(func=mononuc_shuffling_window_generator)
 
 
 def dinuc_shuffling_arg_parsing(subparsers):
-    parser_d = subparsers.add_parser('d',
+    parser_d = subparsers.add_parser("d",
                                      help="di-nucleotide shuffling generator")
-    parser_d.add_argument('-f', '--foreground', required=True, type=str,
+    parser_d.add_argument("-f", "--foreground", required=True, type=str,
                           dest="fg_file", action="store",
                           help="Foreground file in fasta format")
     help_str = "How many background sequences per each foreground sequence "
     help_str += "will be generated (default: 1)"
-    parser_d.add_argument('-n', '--nfold', required=False, type=int,
+    parser_d.add_argument("-n", "--nfold", required=False, type=int,
                           dest="nfold", action="store", default=1,
                           help=help_str)
     parser_d.set_defaults(func=dinuc_shuffling_generator)
@@ -194,19 +194,19 @@ def dinuc_shuffling_arg_parsing(subparsers):
 
 def dinuc_window_shuffling_arg_parsing(subparsers):
     help_str = "di-nucleotide shuffling within a sliding window generator"
-    parser_w = subparsers.add_parser('w', help=help_str)
+    parser_w = subparsers.add_parser("w", help=help_str)
     parser_w.add_argument("-w", "--winlen", required=False, type=int,
                           dest="winlen", action="store", default=100,
                           help="Window length (default: 100)")
     parser_w.add_argument("-s", "--step", required=False, type=int,
                           dest="step", action="store", default=1,
                           help="Sliding step (default: 1)")
-    parser_w.add_argument('-f', '--foreground', required=True, type=str,
+    parser_w.add_argument("-f", "--foreground", required=True, type=str,
                           dest="fg_file", action="store",
                           help="Foreground file in fasta format")
     help_str = "How many background sequences per each foreground sequence "
     help_str += "will be generated (default: 1)"
-    parser_w.add_argument('-n', '--nfold', required=False, type=int,
+    parser_w.add_argument("-n", "--nfold", required=False, type=int,
                           dest="nfold", action="store", default=1,
                           help=help_str)
     parser_w.set_defaults(func=dinuc_shuffling_window_generator)
@@ -214,24 +214,24 @@ def dinuc_window_shuffling_arg_parsing(subparsers):
 
 def gc_compo_arg_parsing(subparsers):
     help_str = "%%GC distribution-based background chooser"
-    parser_g = subparsers.add_parser('g', help=help_str)
+    parser_g = subparsers.add_parser("g", help=help_str)
     parser_g.add_argument("-r", "--bgdirectory", required=True, type=str,
                           dest="bg_dir", action="store",
                           help="Background directory")
     parser_g.add_argument("-b", "--background", required=False, type=str,
                           dest="bg_file", action="store",
                           help="Background file in fasta format")
-    parser_g.add_argument('-f', '--foreground', required=True, type=str,
+    parser_g.add_argument("-f", "--foreground", required=True, type=str,
                           dest="fg_file", action="store",
                           help="Foreground file in fasta format")
     help_str = "How many background sequences per each foreground sequence "
     help_str += "will be choosen (default: 1)"
-    parser_g.add_argument('-n', '--nfold', required=False, type=int,
+    parser_g.add_argument("-n", "--nfold", required=False, type=int,
                           dest="nfold", action="store", default=1,
                           help=help_str)
     help_str = "Try to match the length as closely as possible "
     help_str += "(not set by default)"
-    parser_g.add_argument('-l', '--length', required=False, dest="len_opt",
+    parser_g.add_argument("-l", "--length", required=False, dest="len_opt",
                           action="store_const", const=1, default=0,
                           help=help_str)
     parser_g.set_defaults(func=gc_compo_generator)
@@ -240,7 +240,7 @@ def gc_compo_arg_parsing(subparsers):
 def gc_compo_window_arg_parsing(subparsers):
     help_str = "%%GC distribution and %%GC composition within a sliding "
     help_str += "window background chooser"
-    parser_c = subparsers.add_parser('c', help=help_str)
+    parser_c = subparsers.add_parser("c", help=help_str)
     parser_c.add_argument("-r", "--bgdirectory", required=True, type=str,
                           dest="bg_dir", action="store",
                           help="Background directory")
@@ -258,24 +258,24 @@ def gc_compo_window_arg_parsing(subparsers):
     parser_c.add_argument("-d", "--deviation", required=False, type=float,
                           dest="deviation", action="store", default=2.6,
                           help=help_str)
-    parser_c.add_argument('-f', '--foreground', required=True, type=str,
+    parser_c.add_argument("-f", "--foreground", required=True, type=str,
                           dest="fg_file", action="store",
                           help="Foreground file in fasta format")
     help_str = "How many background sequences per each foreground sequence "
     help_str += "will be choosen (default: 1)"
-    parser_c.add_argument('-n', '--nfold', required=False, type=int,
+    parser_c.add_argument("-n", "--nfold", required=False, type=int,
                           dest="nfold", action="store", default=1,
                           help=help_str)
     help_str = "Try to match the length as closely as possible "
     help_str += "(not set by default)"
-    parser_c.add_argument('-l', '--length', required=False, dest="len_opt",
+    parser_c.add_argument("-l", "--length", required=False, dest="len_opt",
                           action="store_const", const=1, default=0,
                           help=help_str)
     parser_c.set_defaults(func=gc_compo_window_generator)
 
 
 def arg_parsing():
-    descr = '''Background generator with the possibility of using very
+    descr = """Background generator with the possibility of using very
     different ways of generating backgrounds lying into two categories:
         - Creation of new random sequences (generators):
             - mono-nucleotide shuffling using the foreground sequences
@@ -290,7 +290,7 @@ def arg_parsing():
               bins)
             - respecting the %GC distribution as in the previous item and also
             respecting the %GC composition within a sliding window for %GC bin
-    '''
+    """
     parser = argparse.ArgumentParser(
         description=descr,
         formatter_class=argparse.RawDescriptionHelpFormatter)

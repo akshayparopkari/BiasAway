@@ -51,10 +51,10 @@ def fg_len_GC_bins(fg_file):
         gc_list.append(gc)
         length = len(record)
         lengths.append(length)
-        if length in gc_bins[gc]:
-            gc_bins[gc][length] += 1
+        if length in gc_bins[round(gc)]:
+            gc_bins[round(gc)][length] += 1
         else:
-            gc_bins[gc][length] = 1
+            gc_bins[round(gc)][length] = 1
     stream.close()
     return gc_list, gc_bins, lengths
 
