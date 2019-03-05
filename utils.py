@@ -14,9 +14,9 @@ def GC(seq):
 
     """
     try:
-        gc = sum(map(seq.count, ['G', 'C', 'g', 'c', 'S', 's']))
-        l = sum(map(seq.count, ['G', 'C', 'A', 'T', 'S', 'W', 'g', 'c', 'a',
-                                't', 's', 'w']))
+        gc = sum(map(seq.count, ["G", "C", "g", "c", "S", "s"]))
+        l = sum(map(seq.count, ["G", "C", "A", "T", "S", "W", "g", "c", "a",
+                                "t", "s", "w"]))
         return gc * 100 / l
     except ZeroDivisionError:
         return 0
@@ -70,7 +70,7 @@ def compute_dinuc_distrib(seqs, b=False):
     for i in range(0, len(seqs)):
         seq_length = len(seqs[i].seq)
         for j in range(1, seq_length):
-            if seqs[i].seq[j - 1] != 'N' and seqs[i].seq[j] != 'N':
+            if seqs[i].seq[j - 1] != "N" and seqs[i].seq[j] != "N":
                 compo[j - 1]["%s"%(seqs[i].seq[(j - 1):(j + 1)])] += 1.0
 
     if b:  # Dinucleotide distrib over all positions
@@ -82,7 +82,7 @@ def compute_dinuc_distrib(seqs, b=False):
                 cpt += compo[i - 1][key]
             composition[key] = cpt
         for k in list(composition.keys()):
-            cpt = 4.0  # WARNING: WE DO NOT TAKE ANY 'N' INTO ACCOUNT
+            cpt = 4.0  # WARNING: WE DO NOT TAKE ANY "N" INTO ACCOUNT
             first = k[0]
             for key in list(composition.keys()):
                 if key[0] == first:
@@ -144,7 +144,7 @@ def compute_nt_distrib(seqs):
         distrib[l] = 1.0
     for seq in seqs:
         for l in seq:
-            if l != 'N':
+            if l != "N":
                 distrib[l] += 1.0
                 cpt += 1.0
     for l in "ACGT":
@@ -153,4 +153,4 @@ def compute_nt_distrib(seqs):
 
 
 def split_seq(seq):
-    return re.split('([!ACGT]+)', seq)
+    return re.split("([!ACGT]+)", seq)
