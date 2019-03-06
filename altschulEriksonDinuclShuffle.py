@@ -11,14 +11,14 @@ from collections import Counter as cnt
 
 
 def computeCountAndLists(s):
-  #WARNING: Use of function count(s,'UU') returns 1 on word UUU
+  #WARNING: Use of function count(s,"UU") returns 1 on word UUU
   #since it apparently counts only nonoverlapping words UU
   #For this reason, we work with the indices.
 
   #Initialize lists and mono- and dinucleotide dictionaries
   List = {} #List is a dictionary of lists
-  List['A'] = []; List['C'] = [];
-  List['G'] = []; List['T'] = [];
+  List["A"] = []; List["C"] = [];
+  List["G"] = []; List["T"] = [];
   nuclList   = ["A", "C", "G", "T"]
   s = s.upper()
   s = s.replace("T", "T")
@@ -46,24 +46,24 @@ def computeCountAndLists(s):
  
 def chooseEdge(x, dinuclCnt):
   numInList = 0
-  for y in ['A', 'C', 'G', 'T']:
+  for y in ["A", "C", "G", "T"]:
     numInList += dinuclCnt[x][y]
   z = random.random()
-  denom=dinuclCnt[x]['A']+dinuclCnt[x]['C']+dinuclCnt[x]['G']+dinuclCnt[x]['T']
-  numerator = dinuclCnt[x]['A']
+  denom=dinuclCnt[x]["A"]+dinuclCnt[x]["C"]+dinuclCnt[x]["G"]+dinuclCnt[x]["T"]
+  numerator = dinuclCnt[x]["A"]
   if z < float(numerator)/float(denom):
-    dinuclCnt[x]['A'] -= 1
-    return 'A'
-  numerator += dinuclCnt[x]['C']
+    dinuclCnt[x]["A"] -= 1
+    return "A"
+  numerator += dinuclCnt[x]["C"]
   if z < float(numerator)/float(denom):
-    dinuclCnt[x]['C'] -= 1
-    return 'C'
-  numerator += dinuclCnt[x]['G']
+    dinuclCnt[x]["C"] -= 1
+    return "C"
+  numerator += dinuclCnt[x]["G"]
   if z < float(numerator)/float(denom):
-    dinuclCnt[x]['G'] -= 1
-    return 'G'
-  dinuclCnt[x]['T'] -= 1
-  return 'T'
+    dinuclCnt[x]["G"] -= 1
+    return "G"
+  dinuclCnt[x]["T"] -= 1
+  return "T"
 
 
 def connectedToLast(edgeList, nuclList, lastCh):

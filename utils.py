@@ -17,7 +17,7 @@ def GC(seq):
         gc = sum(map(seq.count, ["G", "C", "g", "c", "S", "s"]))
         l = sum(map(seq.count, ["G", "C", "A", "T", "S", "W", "g", "c", "a",
                                 "t", "s", "w"]))
-        return gc * 100 / l
+        return round(gc * 100 / l)
     except ZeroDivisionError:
         return 0
 

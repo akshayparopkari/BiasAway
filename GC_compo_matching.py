@@ -69,7 +69,7 @@ def print_in_bg_dir(gc_bins, bg_dir, with_len=False):
     """ Print the sequences in the bg directory in bin files. """
 
     for percent in range(0, 101):
-        with open("{0}/bg_bin_{1}.txt".format(bg_dir, percent), 'w') as stream:
+        with open("{0}/bg_bin_{1}.txt".format(bg_dir, percent), "w") as stream:
             if with_len:
                 for length in gc_bins[percent]:
                     for rec in gc_bins[percent][length]:
@@ -109,9 +109,9 @@ def bg_len_GC_bins(bg_file, bg_dir):
     """
     Compute G+C content for all sequences in the background.
 
-    Compute and store the %GC information in a list. To each G+C percentage
-    bin, we associate the corresponding sequence names.
-    Return lists of GC contents, GC bins, and lengths distrib.
+    Compute and store the %GC information in a list. To each G+C percentage bin, we
+    associate the corresponding sequence names. Return lists of GC contents, GC bins, and
+    lengths distrib.
 
     """
     stream = open(bg_file)
@@ -145,11 +145,9 @@ def get_bins_from_bg_dir(bg_dir, percent):
 
 def generate_sequences(fg_bins, bg_bins, bg_dir, nfold):
     """
-    Choose randomly the background sequences in each bin of %GC.
-
-    Follow the same distribution as the one of foreground sequences with a
-    nfold ratio.
-    Return the list of %GC and length distrib.
+    Choose randomly the background sequences in each bin of %GC. Follow the same
+    distribution as the one of foreground sequences with a nfold ratio. Return the list of
+    %GC and length distrib.
 
     """
     lengths = []
@@ -173,7 +171,7 @@ def generate_sequences(fg_bins, bg_bins, bg_dir, nfold):
                 sample = bin_seq
                 gc_list.extend([percent] * len(bin_seq))
             for r in sample:
-                print(r.format("fasta"), end=' ')
+                print(r.format("fasta"), end=" ")
                 lengths.append(len(r.seq))
     return gc_list, lengths
 
@@ -297,5 +295,5 @@ def generate_len_sequences(fg, bg, bg_dir, nfold):
                                                                 nb_match))
             for s in sequences:
                 lengths.append(len(s))
-                print("{0:s}".format(s.format("fasta")), end=' ')
+                print("{0:s}".format(s.format("fasta")), end=" ")
     return gc_list, lengths

@@ -24,8 +24,8 @@ def shuffle_window(ss, wl, step):
     bs = ss[:]
     for i in range(0, len(bs) - 1, step):
         substring = bs[i:(i + wl)]
-        bs = ''.join([bs[0:i],
-                      ''.join(random.sample(substring, len(substring))),
+        bs = "".join([bs[0:i],
+                      "".join(random.sample(substring, len(substring))),
                       bs[i + wl:]])
     return bs
 
@@ -49,7 +49,7 @@ def generate_sequences(seqs, winlen, step, nfold):
             new_seq = SeqRecord(Seq(new_sequence, generic_dna),
                                 id="background_seq_{0:d}".format(cpt),
                                 description=descr)
-            print(new_seq.format("fasta"), end=' ')
+            print(new_seq.format("fasta"), end=" ")
             bg_gc_list.append(GC(new_sequence))
             bg_lengths.append(len(new_sequence))
             cpt += 1

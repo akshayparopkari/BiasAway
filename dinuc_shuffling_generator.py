@@ -20,13 +20,13 @@ def generate_sequences(seqs, nfold):
     for n in range(0, nfold):
       new_sequence = ""
       for sequence in split_seq(seq):
-        if re.match('N', sequence):
+        if re.match("N", sequence):
           new_sequence += sequence
         elif sequence:
           new_sequence += dinuclShuffle(sequence)
       new_seq = SeqRecord(Seq(new_sequence, generic_dna),
           id="background_seq_{0:d}".format(cpt), description=descr)
-      print(new_seq.format("fasta"), end=' ')
+      print(new_seq.format("fasta"), end=" ")
       bg_gc_list.append(GC(new_sequence))
       bg_lengths.append(len(new_sequence))
       cpt += 1

@@ -58,7 +58,8 @@ def dinuc_shuffling_window_generator(argu):
 def test_empty_bg_dir(bg_dir):
     if os.path.isdir(bg_dir):
         if os.listdir(bg_dir):
-            sys.exit("### EXITING since both a non-empty background directory and a background file are given ###")
+            sys.exit("EXITING since both a non-empty background directory and a "
+                     "background file are given")
     else:
         try:
             os.makedirs(bg_dir)
@@ -71,7 +72,7 @@ def test_empty_bg_dir(bg_dir):
 
 def test_non_empty_bg_dir(bg_dir):
     if not (os.path.isdir(bg_dir) and os.listdir(bg_dir)):
-        sys.exit("### EXITING since the background directory does not exist or is empty ###")
+        sys.exit("EXITING since the background directory does not exist or is empty")
 
 
 def gc_compo_generator(argu):
@@ -179,16 +180,13 @@ def mononuc_window_shuffling_arg_parsing(subparsers):
 
 
 def dinuc_shuffling_arg_parsing(subparsers):
-    parser_d = subparsers.add_parser("d",
-                                     help="di-nucleotide shuffling generator")
-    parser_d.add_argument("-f", "--foreground", required=True, type=str,
-                          dest="fg_file", action="store",
-                          help="Foreground file in fasta format")
-    help_str = "How many background sequences per each foreground sequence "
-    help_str += "will be generated (default: 1)"
-    parser_d.add_argument("-n", "--nfold", required=False, type=int,
-                          dest="nfold", action="store", default=1,
-                          help=help_str)
+    parser_d = subparsers.add_parser("d", help="di-nucleotide shuffling generator")
+    parser_d.add_argument("-f", "--foreground", required=True, type=str, dest="fg_file",
+                          action="store", help="Foreground file in fasta format")
+    help_str = "How many background sequences per each foreground sequence will be "\
+               "generated (default: 1)"
+    parser_d.add_argument("-n", "--nfold", required=False, type=int, dest="nfold",
+                          action="store", default=1, help=help_str)
     parser_d.set_defaults(func=dinuc_shuffling_generator)
 
 
