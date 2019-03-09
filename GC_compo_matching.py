@@ -186,13 +186,15 @@ def extract_seq_rec(size, nb, bg_keys, bg, accu, index):
     Return the accumulator and the number of found sequences.
 
     """
-    if not (bg_keys and nb):  # End of the recursion since we have no sequence
-    # in the bg or enough retrieved (nb=0)
+    # End of the recursion since we have no sequence in the bg or enough retrieved (nb=0)
+    if not (bg_keys and nb):
         return accu, nb
     if index > len(bg_keys) - 1:
         return extract_seq_rec(size, nb, bg_keys, bg, accu, index - 1)
-    if not bg_keys:  # No more size in the background to be checked so return
-    # what was in the previous size bin
+
+    # No more size in the background to be checked so return what was in the previous
+    # size bin
+    if not bg_keys:
         if bg[bg_keys[index - 1]]:
             random.shuffle(bg[bg_keys[index - 1]])
             accu.extend(bg[bg_keys[index - 1]][0:nb])
@@ -200,29 +202,34 @@ def extract_seq_rec(size, nb, bg_keys, bg, accu, index):
             return accu, nb - len(bg[bg_keys[index - 1]][0:nb])
         else:
             return accu, nb
-    if bg_keys[index] >= size:  # No need to go further in the different sizes
-    # within the background
+
+    # No need to go further in the different sizes within the background
+    if bg_keys[index] >= size:
+
+        # Which size is the closest to the expected one?
+        # we go for the current one if YES
         if (index == 0 or not bg[bg_keys[index - 1]] or
-                bg_keys[index] - size < size - bg_keys[index - 1]):  # Which
-        # size is the closest to the expected one? => we go for the current one
-        # if YES
+            bg_keys[index] - size < size - bg_keys[index - 1]):
             random.shuffle(bg[bg_keys[index]])
             accu.extend(bg[bg_keys[index]][0:nb])
             new_nb = nb - len(bg[bg_keys[index]][0:nb])
-            if bg[bg_keys[index]][nb:]:  # Check that there is sequences in the
-            # background for this size bin
+
+            # Check that there is sequences in the background for this size bin
+            if bg[bg_keys[index]][nb:]:
                 bg[bg_keys[index]] = bg[bg_keys[index]][nb:]
                 return extract_seq_rec(size, new_nb, bg_keys, bg, accu, index)
             else:
                 bg[bg_keys[index]] = bg[bg_keys[index]][nb:]
                 del bg_keys[index]
                 return extract_seq_rec(size, new_nb, bg_keys, bg, accu, index)
-        else:  # The previous size was the closest
+        else:
+            # The previous size was the closest
             random.shuffle(bg[bg_keys[index - 1]])
             accu.extend(bg[bg_keys[index - 1]][0:nb])
             new_nb = nb - len(bg[bg_keys[index - 1]][0:nb])
-            if bg[bg_keys[index - 1]][nb:]:  # Check that there is sequences in
-            # the background for this size bin
+
+            # Check that there is sequences in the background for this size bin
+            if bg[bg_keys[index - 1]][nb:]:
                 bg[bg_keys[index - 1]] = bg[bg_keys[index - 1]][nb:]
                 return extract_seq_rec(size, new_nb, bg_keys, bg, accu, index)
             else:

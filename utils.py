@@ -71,7 +71,7 @@ def compute_dinuc_distrib(seqs, b=False):
         seq_length = len(seqs[i].seq)
         for j in range(1, seq_length):
             if seqs[i].seq[j - 1] != "N" and seqs[i].seq[j] != "N":
-                compo[j - 1]["%s"%(seqs[i].seq[(j - 1):(j + 1)])] += 1.0
+                compo[j - 1]["%s" % (seqs[i].seq[(j - 1):(j + 1)])] += 1.0
 
     if b:  # Dinucleotide distrib over all positions
         distrib = {}
@@ -109,31 +109,31 @@ def print_dinuc_distrib(dinuc, output):
     if output:
         stream = open(output, "w")
     for j in range(0, len(dinuc)):
-        stream.write("%f, %f, %f, %f, %f, %f, %f, %f, %f,"%(dinuc[j]["AA"],
-                                                            dinuc[j]["AC"],
-                                                            dinuc[j]["AG"],
-                                                            dinuc[j]["AT"],
-                                                            dinuc[j]["AN"],
-                                                            dinuc[j]["CA"],
-                                                            dinuc[j]["CC"],
-                                                            dinuc[j]["CG"],
-                                                            dinuc[j]["CT"]))
-        stream.write(" %f, %f, %f, %f, %f, %f, %f, %f, %f,"%(dinuc[j]["CN"],
-                                                             dinuc[j]["GA"],
-                                                             dinuc[j]["GC"],
-                                                             dinuc[j]["GG"],
-                                                             dinuc[j]["GT"],
-                                                             dinuc[j]["GN"],
-                                                             dinuc[j]["TA"],
-                                                             dinuc[j]["TC"],
-                                                             dinuc[j]["TG"]))
-        stream.write(" %f, %f, %f, %f, %f, %f, %f\n"%(dinuc[j]["TT"],
-                                                      dinuc[j]["TN"],
-                                                      dinuc[j]["NA"],
-                                                      dinuc[j]["NC"],
-                                                      dinuc[j]["NG"],
-                                                      dinuc[j]["NT"],
-                                                      dinuc[j]["NN"]))
+        stream.write("%f, %f, %f, %f, %f, %f, %f, %f, %f," % (dinuc[j]["AA"],
+                                                              dinuc[j]["AC"],
+                                                              dinuc[j]["AG"],
+                                                              dinuc[j]["AT"],
+                                                              dinuc[j]["AN"],
+                                                              dinuc[j]["CA"],
+                                                              dinuc[j]["CC"],
+                                                              dinuc[j]["CG"],
+                                                              dinuc[j]["CT"]))
+        stream.write(" %f, %f, %f, %f, %f, %f, %f, %f, %f," % (dinuc[j]["CN"],
+                                                               dinuc[j]["GA"],
+                                                               dinuc[j]["GC"],
+                                                               dinuc[j]["GG"],
+                                                               dinuc[j]["GT"],
+                                                               dinuc[j]["GN"],
+                                                               dinuc[j]["TA"],
+                                                               dinuc[j]["TC"],
+                                                               dinuc[j]["TG"]))
+        stream.write(" %f, %f, %f, %f, %f, %f, %f\n" % (dinuc[j]["TT"],
+                                                        dinuc[j]["TN"],
+                                                        dinuc[j]["NA"],
+                                                        dinuc[j]["NC"],
+                                                        dinuc[j]["NG"],
+                                                        dinuc[j]["NT"],
+                                                        dinuc[j]["NN"]))
     stream.close()
 
 
