@@ -249,16 +249,18 @@ def gc_compo_window_arg_parsing(subparsers):
 
 def arg_parsing():
     descr = """Background generator with the possibility of using very different ways of
-    generating backgrounds lying into two categories:
-        - Creation of new random sequences (generators):
-            - mono-nucleotide shuffling using the foreground sequences
-            - mono-nucleotide shuffling within a sliding window using foreground sequences
-            - di-nucleotide shuffling using the foreground sequences
-            - di-nucleotide shuffling within a sliding window using foreground sequences
-        - Extraction of sequences from a set of possible background sequences (choosers):
-            - respecting the GC distribution of the foreground (using GC bins)
-            - respecting the GC distribution as in the previous item and also respecting
-              the GC composition within a sliding window for GC bin
+generating backgrounds lying into two categories:
+
+    - Creation of new random sequences (generators):
+        - mono-nucleotide shuffling using the foreground sequences
+        - mono-nucleotide shuffling within a sliding window using foreground sequences
+        - di-nucleotide shuffling using the foreground sequences
+        - di-nucleotide shuffling within a sliding window using foreground sequences
+
+    - Extraction of sequences from a set of possible background sequences (choosers):
+        - respecting the GC distribution of the foreground (using GC bins)
+        - respecting the GC distribution as in the previous item and also respecting
+          the GC composition within a sliding window for GC bin
     """
     parser = argparse.ArgumentParser(description=descr,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)

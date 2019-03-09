@@ -28,8 +28,8 @@ def computeCountAndLists(s):
     for x in nuclList:
         nuclCnt[x] = 0
         dinuclCnt[x] = {}
-    for y in nuclList:
-        dinuclCnt[x][y] = 0
+        for y in nuclList:
+            dinuclCnt[x][y] = 0
 
     # Compute count and lists
     nuclCnt[s[0]] = 1

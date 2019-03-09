@@ -33,24 +33,18 @@ def shuffle_window(ss, wl, step):
 def generate_sequences(seqs, winlen, step, nfold):
     """
     Shuffle sequences within a sliding window, keeping mononuc compo.
-
     Return %GC and length distribution of output sequences.
-
     """
-
-    cpt = 1
     bg_gc_list = []
     bg_lengths = []
     for record in seqs:
         sequence = record.seq.__str__()
-        descr = "Background sequence for {0:s}".format(record.name, cpt)
         for _ in range(0, nfold):
             new_sequence = shuffle_window(sequence, winlen, step)
             new_seq = SeqRecord(Seq(new_sequence, generic_dna),
-                                id="background_seq_{0:d}".format(cpt),
-                                description=descr)
-            print(new_seq.format("fasta"), end=" ")
+                                id="background_seq_{}".format(record.name),
+                                description="")
+            print(new_seq.format("fasta"), end="")
             bg_gc_list.append(GC(new_sequence))
             bg_lengths.append(len(new_sequence))
-            cpt += 1
     return bg_gc_list, bg_lengths
